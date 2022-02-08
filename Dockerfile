@@ -19,11 +19,11 @@ RUN apt-get update \
  && mkdir /usr/openam \
  && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOConfiguratorTools-$VERSION.zip -o /usr/openam/ssoconfiguratortools.zip -vL \
  && ls -larth /usr/openam \
- && unzip /usr/openam/ssoconfiguratortools.zip -o /usr/openam/ssoconfiguratortools \
+ && unzip /usr/openam/ssoconfiguratortools.zip -d /usr/openam/ssoconfiguratortools \
  && rm /usr/openam/ssoconfiguratortools.zip \
  && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOAdminTools-$VERSION.zip -o /usr/openam/ssoadmintools.zip -vL \
  && ls -larth /usr/openam \
- && unzip /usr/openam/ssoadmintools.zip -o /usr/openam/ssoadmintools \
+ && unzip /usr/openam/ssoadmintools.zip -d /usr/openam/ssoadmintools \
  && rm /usr/openam/ssoadmintools.zip \
  && chgrp -R 0 /usr/openam/ \
  && chmod -R g=u /usr/openam/ \

@@ -26,8 +26,9 @@ RUN apt-get update \
  && chmod -R g=u /usr/openam/ \
  && chgrp -R 0 /usr/local/tomcat \
  && chmod -R g=u /usr/local/tomcat \
- && useradd -m -r -u 1001 -g root $OPENAM_USER \
- && install -d -o $OPENAM_USER $OPENAM_DATA_DIR
+ && useradd -m -r -u 1001 -g root $OPENAM_USER
+
+RUN install -d -o $OPENAM_USER $OPENAM_DATA_DIR
 
 USER $OPENAM_USER
 

@@ -14,9 +14,8 @@ ARG VERSION 14.6.4
 
 RUN apt-get update \
  && apt-get install -y unzip \
- && rm -rf /var/lib/apt/lists/*
- 
-RUN curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/OpenAM-$VERSION.war -o $CATALINA_HOME/webapps/openam.war -vL \
+ && rm -rf /var/lib/apt/lists/* \
+ && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/OpenAM-$VERSION.war -o $CATALINA_HOME/webapps/openam.war -vL \
  && mkdir /usr/openam \
  && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOConfiguratorTools-$VERSION.zip -o /usr/openam/ssoconfiguratortools.zip -vL \
  && ls -larth /usr/openam \
@@ -25,9 +24,8 @@ RUN curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSI
  && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOAdminTools-$VERSION.zip -o /usr/openam/ssoadmintools.zip -vL \
  && ls -larth /usr/openam \
  && unzip /usr/openam/ssoadmintools.zip -o /usr/openam/ssoadmintools \
- && rm /usr/openam/ssoadmintools.zip
- 
-RUN chgrp -R 0 /usr/openam/ \
+ && rm /usr/openam/ssoadmintools.zip \
+ && chgrp -R 0 /usr/openam/ \
  && chmod -R g=u /usr/openam/ \
  && chgrp -R 0 /usr/local/tomcat \
  && chmod -R g=u /usr/local/tomcat \

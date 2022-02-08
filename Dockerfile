@@ -10,7 +10,7 @@ ENV CATALINA_HOME=/usr/local/tomcat \
 
 WORKDIR $CATALINA_HOME
 
-ARG VERSION 14.6.4
+ENV VERSION=14.6.4
 
 RUN apt-get update \
  && apt-get install -y unzip \

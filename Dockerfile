@@ -12,19 +12,17 @@ WORKDIR $CATALINA_HOME
 
 ARG VERSION 14.6.4
 
-RUN apt-get update && apt-get install -y \
-    p7zip-full \
+RUN apt-get update \
+ && apt-get install -y unzip \
  && rm -rf /var/lib/apt/lists/*
  
-RUN curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/OpenAM-$VERSION.war -o $CATALINA_HOME/webapps/openam.war -s \
+RUN curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/OpenAM-$VERSION.war -o $CATALINA_HOME/webapps/openam.war -sL \
  && mkdir /usr/openam \
- && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOConfiguratorTools-$VERSION.zip -o /usr/openam/ssoconfiguratortools.zip -s \
- && ls -larth /usr/openam \
- && 7z x /usr/openam/ssoconfiguratortools.zip -o/usr/openam/ssoconfiguratortools \
+ && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOConfiguratorTools-$VERSION.zip -o /usr/openam/ssoconfiguratortools.zip -sL \
+ && unzip /usr/openam/ssoconfiguratortools.zip -o /usr/openam/ssoconfiguratortools \
  && rm /usr/openam/ssoconfiguratortools.zip \
- && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOAdminTools-$VERSION.zip -o /usr/openam/ssoadmintools.zip -s \
- && ls -larth /usr/openam \
- && 7z x /usr/openam/ssoadmintools.zip -o/usr/openam/ssoadmintools \
+ && curl https://github.com/OpenIdentityPlatform/OpenAM/releases/download/$VERSION/SSOAdminTools-$VERSION.zip -o /usr/openam/ssoadmintools.zip -sL \
+ && unzip /usr/openam/ssoadmintools.zip -o /usr/openam/ssoadmintools \
  && rm /usr/openam/ssoadmintools.zip
  
 RUN chgrp -R 0 /usr/openam/ \

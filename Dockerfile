@@ -31,4 +31,9 @@ RUN apt-get update \
 
 USER $OPENAM_USER
 
+COPY openam-build.sh /tmp/
+RUN chmod +x /tmp/openam-build.sh
+ && /tmp/openam-build.sh
+ && rm -f /tmp/openam-build.sh
+
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
